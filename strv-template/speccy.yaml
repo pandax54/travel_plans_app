@@ -1,0 +1,3 @@
+lint:
+  skip:
+    - server-trailing-slash

@@ -1,0 +1,33 @@
+exports["Users/PATCH /v1/users/me/responds with 422 error when unexpected attributes are in body but without updating(0)"] = {
+  "message": "Invalid request body",
+  "type": "E_INVALID_BODY",
+  "errors": [
+    {
+      "path": [],
+      "property": "instance",
+      "message": "is not allowed to have the additional property \"name\"",
+      "schema": {
+        "type": "Object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "additionalProperties": false
+      },
+      "instance": {
+        "name": "Bruce"
+      },
+      "name": "additionalProperties",
+      "argument": "name",
+      "stack": "instance is not allowed to have the additional property \"name\""
+    }
+  ]
+};
+
+exports["Users/PATCH /v1/users/me/responds with 401 error when user is not authenticated(0)"] = {
+  "message": "The user was not authorized",
+  "type": "E_UNAUTHORIZED"
+};
+

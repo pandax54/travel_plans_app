@@ -1,0 +1,51 @@
+get:
+  operationId: getUsers
+  summary: List of all Users
+  description: |
+    Get all Users in array
+  parameters:
+    - in: query
+      name: page
+      schema:
+        type: number
+        default: 0
+      description: Page for pagination (starts from 0)
+    - in: query
+      name: pageSize
+      schema:
+        type: number
+        default: 15
+      description: Page size for pagination
+    - in: query
+      name: orderColumn
+      schema:
+        type: string
+        enum:
+          - id
+          - email
+          - createdAt
+      description: Column for ordering
+    - in: query
+      name: orderDirection
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+      description: Direction for ordering
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/users/admin/paginated-users.yaml'
+    401:
+      $ref: '../../definitions/errors/401-unauthorized.yaml'
+    403:
+      $ref: '../../definitions/errors/403-forbidden.yaml'
+    422:
+      $ref: '../../definitions/errors/422-invalid-body.yaml'
+  tags: ['Admin', 'Users']
+  security:
+  - BearerAuth: []

@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+
+    "outDir": "./dist",
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "moduleResolution": "node",
+
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/*"],
+      "@controllers/*": ["src/api/controllers/*"],
+      "@models/*": ["src/database/models/*"],
+      "@repositories/*": ["src/database/repositories/*"],
+      "@operations/*": ["src/operations/*"],
+      "@services/*": ["src/services/*"],
+
+      "@test/*": ["test/*"],
+      "@integration/*": ["test/integration/*"],
+      "@unit/*": ["test/unit/*"],
+      "@data/*": ["test/data/*"]
+    },
+    "typeRoots": [ "node_modules/@types", "@types" ]
+  },
+  "include": [
+    "src",
+    "test",
+    "@types"
+  ]
+}

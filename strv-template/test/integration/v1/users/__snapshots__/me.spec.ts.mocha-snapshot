@@ -1,0 +1,5 @@
+exports["Users/GET /v1/users/me/responds with error 401 when user is not authenticated(0)"] = {
+  "message": "The user was not authorized",
+  "type": "E_UNAUTHORIZED"
+};
+

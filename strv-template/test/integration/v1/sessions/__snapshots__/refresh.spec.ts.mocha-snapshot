@@ -1,0 +1,44 @@
+exports["Sessions/POST /v1/sessions/refresh/responds with error 422 when not all required params are in body(0)"] = {
+  "message": "Invalid request body",
+  "type": "E_INVALID_BODY",
+  "errors": [
+    {
+      "path": [],
+      "property": "instance",
+      "message": "requires property \"refreshToken\"",
+      "schema": {
+        "type": "Object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "refreshToken"
+        ],
+        "additionalProperties": false
+      },
+      "instance": {},
+      "name": "required",
+      "argument": "refreshToken",
+      "stack": "instance requires property \"refreshToken\""
+    }
+  ]
+};
+
+exports["Sessions/POST /v1/sessions/refresh/responds with error 404 when user cannot be found using refresh token(0)"] = {
+  "message": "User does not exist",
+  "type": "E_USER_NOT_FOUND"
+};
+
+exports["Sessions/POST /v1/sessions/refresh/responds with error 401 when refresh token is expired(0)"] = {
+  "message": "Refresh token expired, new login required",
+  "type": "E_REFRESH_TOKEN_EXPIRED"
+};
+
+exports["Sessions/POST /v1/sessions/refresh/responds with error 401 when token was already revoked(0)"] = {
+  "message": "Refresh token expired, new login required",
+  "type": "E_REFRESH_TOKEN_EXPIRED"
+};
+

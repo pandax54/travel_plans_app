@@ -1,0 +1,100 @@
+exports["Users/PATCH /admin/users/:id/responds with 422 error when body validation fails(0)"] = {
+  "message": "Invalid request body",
+  "type": "E_INVALID_BODY",
+  "errors": [
+    {
+      "path": [
+        "role"
+      ],
+      "property": "instance.role",
+      "message": "is not one of enum values: admin,user",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "admin",
+          "user"
+        ]
+      },
+      "instance": "guest",
+      "name": "enum",
+      "argument": [
+        "admin",
+        "user"
+      ],
+      "stack": "instance.role is not one of enum values: admin,user"
+    },
+    {
+      "path": [],
+      "property": "instance",
+      "message": "is not allowed to have the additional property \"name\"",
+      "schema": {
+        "type": "Object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "format": "password"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "instance": {
+        "email": "clark.kent@dailyplanet.com",
+        "password": "newpassword",
+        "role": "guest",
+        "name": "Clark"
+      },
+      "name": "additionalProperties",
+      "argument": "name",
+      "stack": "instance is not allowed to have the additional property \"name\""
+    }
+  ]
+};
+
+exports["Users/PATCH /admin/users/:id/responds with 422 error when params validation fails(0)"] = {
+  "message": "Invalid request params",
+  "type": "E_INVALID_PARAMS",
+  "errors": [
+    {
+      "path": [
+        "id"
+      ],
+      "property": "instance.id",
+      "message": "does not conform to the \"numericId\" format",
+      "schema": {
+        "type": "string",
+        "format": "numericId"
+      },
+      "instance": "one",
+      "name": "format",
+      "argument": "numericId",
+      "stack": "instance.id does not conform to the \"numericId\" format"
+    }
+  ]
+};
+
+exports["Users/PATCH /admin/users/:id/responds with 404 error when user does not exist(0)"] = {
+  "message": "User does not exist",
+  "type": "E_USER_NOT_FOUND"
+};
+
+exports["Users/PATCH /admin/users/:id/responds with 403 error when user is not admin(0)"] = {
+  "message": "The user is not allowed to access this resource",
+  "type": "E_FORBIDDEN"
+};
+
+exports["Users/PATCH /admin/users/:id/responds with 401 error when user is not authenticated(0)"] = {
+  "message": "The user was not authorized",
+  "type": "E_UNAUTHORIZED"
+};
+

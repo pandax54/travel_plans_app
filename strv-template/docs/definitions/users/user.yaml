@@ -1,0 +1,24 @@
+example:
+  id: 1
+  createdAt: '2018-01-15T17:04:12.917Z'
+  updatedAt: '2018-01-17T17:33:44.349Z'
+  email: john@smith.com
+  role: user
+
+type: object
+properties:
+  id:
+    type: number
+  email:
+    type: string
+  role:
+    type: string
+    enum:
+      - user
+      - admin
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time

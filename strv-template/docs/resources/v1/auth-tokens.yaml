@@ -1,0 +1,47 @@
+post:
+  operationId: refreshToken
+  summary: Sign in existing User using refresh token
+  description: |
+    Verifies if provided `refreshToken` matches existing user and returns
+    `accessToken` with profile details. To use the `accessToken` for subsequent
+    requests set authorization header like shown below.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../definitions/auth/tokens/post.yaml'
+  responses:
+    201:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/users/v1/logged-user.yaml'
+    400:
+      description: Invalid token
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/errors/error.yaml'
+          example:
+            type: E_INVALID_TOKEN
+            message: Invalid refresh token
+    422:
+      $ref: '../../definitions/errors/422-invalid-body.yaml'
+  tags: ['V1', 'Auth']
+  security: []
+
+delete:
+  operationId: deleteToken
+  summary: Delete User's refresh token
+  description: |
+    Delete User's refresh token
+  responses:
+    204:
+      description: Successful response
+    401:
+      $ref: '../../definitions/errors/401-unauthorized.yaml'
+  tags: ['V1', 'Auth']
+  security:
+    - BearerAuth: []

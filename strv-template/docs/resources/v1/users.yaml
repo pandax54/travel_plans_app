@@ -1,0 +1,33 @@
+post:
+  operationId: createUser
+  summary: Register a new User
+  description: |
+    Creates a new User record and sends `accessToken` with profile details in the
+    response. To use the `accessToken` for subsequent requests set authorization
+    header like shown below.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../definitions/users/v1/post.yaml'
+  responses:
+    201:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/users/v1/logged-user.yaml'
+    409:
+      description: Conflict record found
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/errors/error.yaml'
+          example:
+            type: E_CONFLICT
+            message: User already exists
+    422:
+      $ref: '../../definitions/errors/422-invalid-body.yaml'
+  tags: ['V1', 'Users']
+  security: []

@@ -1,0 +1,7 @@
+exports["Sessions/DELETE /v1/sessions/responds with no content(0)"] = {};
+
+exports["Sessions/DELETE /v1/sessions/responds with 401 error when user is not authenticated(0)"] = {
+  "message": "The user was not authorized",
+  "type": "E_UNAUTHORIZED"
+};
+

@@ -1,0 +1,16 @@
+type: object
+properties:
+  email:
+    type: string
+  password:
+    type: string
+  role:
+    type: string
+    enum:
+      - user
+      - admin
+
+example:
+  email: john@smith.com
+  password: supersecretpassword
+  role: admin

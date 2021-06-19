@@ -1,0 +1,8 @@
+description: Resource not found
+content:
+  application/json:
+    schema:
+      $ref: '../../definitions/errors/error.yaml'
+    example:
+      type: E_NOT_FOUND
+      message: Requested resource was not found

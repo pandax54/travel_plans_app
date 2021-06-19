@@ -1,0 +1,26 @@
+type: object
+example:
+  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTUxNjQ3NzYyOCwiZXhwIjoxNTE2NDgxMjI4fQ.jG0IuR2ggiOSSF-J189pJNVhSQdTF9Zl2xNE7FG86qY
+  accessTokenExpiresAt: '2018-01-26t11:40:40.105Z'
+  refreshToken: a287683c4e0f630b161a6a045e29aacd6cc39c74
+  refreshTokenExpiresAt: '2018-11-07T12:19:12.616Z'
+  user:
+    id: 1
+    createdAt: '2018-01-15T17:04:12.917Z'
+    updatedAt: '2018-01-17T17:33:44.349Z'
+    email: john@smith.com
+    role: user
+
+properties:
+  accessToken:
+    type: string
+  accessTokenExpiresAt:
+    type: string
+    format: date-time
+  refreshToken:
+    type: string
+  refreshTokenExpiresAt:
+    type: string
+    format: date-time
+  user:
+    $ref: '../user.yaml'

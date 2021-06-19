@@ -1,0 +1,1 @@
+web: node -r tsconfig-paths/register -r dist/src/bootstrap.js dist/src/cluster | pino-pretty

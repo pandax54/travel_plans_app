@@ -1,0 +1,8 @@
+description: User not found
+content:
+  application/json:
+    schema:
+      $ref: '../../definitions/errors/error.yaml'
+    example:
+      type: E_USER_NOT_FOUND
+      message: User does not exist

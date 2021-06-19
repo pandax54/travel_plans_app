@@ -1,0 +1,8 @@
+type: object
+properties:
+  total:
+    type: number
+  results:
+    type: array
+    items:
+      $ref: '../user.yaml'

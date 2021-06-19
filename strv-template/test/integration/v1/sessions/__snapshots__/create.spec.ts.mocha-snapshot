@@ -1,0 +1,46 @@
+exports["Sessions/POST /v1/sessions/native/responds with error 400 when credentials are wrong(0)"] = {
+  "message": "Login failed",
+  "type": "E_INVALID_CREDENTIALS"
+};
+
+exports["Sessions/POST /v1/sessions/native/responds with error 404 when user cannot be found by email(0)"] = {
+  "message": "User does not exist",
+  "type": "E_USER_NOT_FOUND"
+};
+
+exports["Sessions/POST /v1/sessions/native/responds with error 422 when not all required attributes are in body(0)"] = {
+  "message": "Invalid request body",
+  "type": "E_INVALID_BODY",
+  "errors": [
+    {
+      "path": [],
+      "property": "instance",
+      "message": "requires property \"password\"",
+      "schema": {
+        "type": "Object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "instance": {
+        "email": "bruce.wayne@wayneindustries.com"
+      },
+      "name": "required",
+      "argument": "password",
+      "stack": "instance requires property \"password\""
+    }
+  ]
+};
+

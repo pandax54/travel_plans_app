@@ -1,0 +1,41 @@
+get:
+  operationId: getMe
+  summary: Get detail of authenticated User
+  description: |
+    Responds with detail of authenticated User.
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/users/v1/logged-user.yaml'
+    401:
+      $ref: '../../definitions/errors/401-unauthorized.yaml'
+  tags: ['V1', 'Users']
+  security:
+    - BearerAuth: []
+
+patch:
+  operationId: updateMe
+  summary: Update attributes of authenticated User
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../definitions/users/v1/patch.yaml'
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/users/user.yaml'
+    401:
+      $ref: '../../definitions/errors/401-unauthorized.yaml'
+    422:
+      $ref: '../../definitions/errors/422-invalid-body.yaml'
+  tags: ['V1', 'Users']
+  security:
+    - BearerAuth: []

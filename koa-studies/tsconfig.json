@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/*"],
+      "@controllers/*": ["src/api/controllers/*"],
+      "@models/*": ["src/database/models/*"],
+      "@repositories/*": ["src/database/repositories/*"],
+    },
+    "typeRoots": ["node_modules/@types", "@types"],
+    "forceConsistentCasingInFileNames": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "__tests__"]
+}
+

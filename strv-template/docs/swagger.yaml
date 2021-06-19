@@ -1,0 +1,54 @@
+openapi: 3.0.0
+
+info:
+  version: '1.0.0'
+  title: strv-template-backend-api-layered
+  description: strv-template-backend-api-layered REST API
+  contact:
+    name: STRV Backend Department
+    url: https://www.strv.com
+
+tags:
+  - name: Admin
+  - name: Sessions
+  - name: Users
+  - name: V1
+
+servers:
+  - url: '/'
+    description: Current server
+  - url: http://localhost:{port}
+    description: Local server for development
+    variables:
+      port:
+        enum:
+          - '3000'
+          - '5000'
+        default: '5000'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+paths:
+  # V1
+  /v1/users:
+    $ref: './resources/v1/users.yaml'
+  /v1/users/me:
+    $ref: './resources/v1/users-me.yaml'
+
+  /v1/sessions/native:
+    $ref: './resources/v1/sessions.yaml#native'
+  /v1/sessions/refresh:
+    $ref: './resources/v1/sessions.yaml#refresh'
+  /v1/sessions/destroy:
+    $ref: './resources/v1/sessions.yaml#destroy'
+
+  # ADMIN
+  /admin/users:
+    $ref: './resources/admin/users.yaml'
+  /admin/users/{id}:
+    $ref: './resources/admin/users-id.yaml'

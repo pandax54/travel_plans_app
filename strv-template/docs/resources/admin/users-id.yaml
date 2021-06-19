@@ -1,0 +1,94 @@
+get:
+  operationId: getUserById
+  summary: Get specified User
+  description: |
+    Returns User's attribtues.
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: number
+      required: true
+      description: User ID
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/users/user.yaml'
+    401:
+      $ref: '../../definitions/errors/401-unauthorized.yaml'
+    403:
+      $ref: '../../definitions/errors/403-forbidden.yaml'
+    404:
+      $ref: '../../definitions/errors/404-resource-not-found.yaml'
+    422:
+      $ref: '../../definitions/errors/422-invalid-body.yaml'
+  tags: ['Admin', 'Users']
+  security:
+    - BearerAuth: []
+
+patch:
+  operationId: updateUser
+  summary: Edit specified User
+  description: |
+    Update User's attributes.
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: number
+      required: true
+      description: User ID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../definitions/users/admin/patch.yaml'
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../definitions/users/user.yaml'
+    401:
+      $ref: '../../definitions/errors/401-unauthorized.yaml'
+    403:
+      $ref: '../../definitions/errors/403-forbidden.yaml'
+    404:
+      $ref: '../../definitions/errors/404-resource-not-found.yaml'
+    422:
+      $ref: '../../definitions/errors/422-invalid-body.yaml'
+  tags: ['Admin', 'Users']
+  security:
+    - BearerAuth: []
+
+delete:
+  operationId: deleteUser
+  summary: Delete specified User
+  description: |
+    Update User's attribute `deletedAt` to current timestamp.
+  parameters:
+    - name: id
+      in: path
+      schema:
+        type: number
+      required: true
+      description: User ID
+  responses:
+    204:
+      description: Successful response
+    401:
+      $ref: '../../definitions/errors/401-unauthorized.yaml'
+    403:
+      $ref: '../../definitions/errors/403-forbidden.yaml'
+    404:
+      $ref: '../../definitions/errors/404-resource-not-found.yaml'
+    422:
+      $ref: '../../definitions/errors/422-invalid-body.yaml'
+  tags: ['Admin', 'Users']
+  security:
+    - BearerAuth: []

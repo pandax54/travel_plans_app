@@ -1,0 +1,10 @@
+type: object
+properties:
+  refreshToken:
+    type: string
+
+required:
+  - refreshToken
+
+example:
+  refreshToken: a287683c4e0f630b161a6a045e29aacd6cc39c74

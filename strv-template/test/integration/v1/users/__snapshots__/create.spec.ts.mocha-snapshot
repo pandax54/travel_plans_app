@@ -1,0 +1,41 @@
+exports["Users/POST /v1/users/responds with error 422 when not all required params are in body(0)"] = {
+  "message": "Invalid request body",
+  "type": "E_INVALID_BODY",
+  "errors": [
+    {
+      "path": [],
+      "property": "instance",
+      "message": "requires property \"password\"",
+      "schema": {
+        "type": "Object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "instance": {
+        "email": "bruce.wayne@wayneindustries.com"
+      },
+      "name": "required",
+      "argument": "password",
+      "stack": "instance requires property \"password\""
+    }
+  ]
+};
+
+exports["Users/POST /v1/users/responds with error 409 when user already exists in database(0)"] = {
+  "message": "User already exist in database",
+  "type": "E_CONFLICT"
+};
+

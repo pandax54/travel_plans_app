@@ -1,0 +1,8 @@
+description: Validation error
+content:
+  application/json:
+    schema:
+      $ref: '../../definitions/errors/validation.yaml'
+    example:
+      type: E_INVALID_BODY
+      message: Invalid request body

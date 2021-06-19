@@ -1,0 +1,28 @@
+version: '2.4'
+
+ services:
+  database:
+    image: postgres:12-alpine
+    container_name: template-database-test
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+    volumes:
+      - ./.db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
+
+   api:
+    build:
+      context: .
+      target: test
+    container_name: template-api-test
+    command: make test
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL_TEST=postgres://postgres:postgres@database:5432/layered-tpl-test
+      - PORT=3000

@@ -1,0 +1,8 @@
+description: Unauthorized
+content:
+  application/json:
+    schema:
+      $ref: '../../definitions/errors/error.yaml'
+    example:
+      type: E_UNAUTHORIZED
+      message: The user was not authorized

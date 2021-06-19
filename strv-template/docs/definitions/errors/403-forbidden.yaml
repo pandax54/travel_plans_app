@@ -1,0 +1,8 @@
+description: Forbidden
+content:
+  application/json:
+    schema:
+      $ref: '../../definitions/errors/error.yaml'
+    example:
+      type: E_FORBIDDEN
+      message: The user is not allowed to access this resource
