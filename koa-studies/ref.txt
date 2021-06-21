@@ -1,0 +1,7 @@
+https://github.com/youlast/space-network-server
+
+https://github.com/LimarenkoDenis/typescript-node-koa-realworld-example-app
+
+https://github.com/osvlabs/TyKoa
+
+https://medium.com/codex/creating-login-system-with-koa-typescript-objection-js-jwt-react-and-mysql-7fe42f8c4415

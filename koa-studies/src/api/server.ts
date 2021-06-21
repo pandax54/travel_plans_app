@@ -4,6 +4,7 @@ import cors from "kcors";
 import json from 'koa-json';
 import { usersRoutes } from './routes/users.routes'
 import bodyParser from 'koa-bodyparser';
+import '../database/db';
 
 const app = new Koa();
 
