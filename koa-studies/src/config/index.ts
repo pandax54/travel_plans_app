@@ -1,58 +1,61 @@
-/* eslint-disable import/exports-last */
+import * as path from 'path';
+import * as _ from 'lodash';
+import { knexfile } from '../../knexfile';
 
-import * as R from 'ramda'
+const ROOT: string = path.resolve(__dirname, '../', "../");
+const NODE_ENV: string = _.defaultTo(process.env.NODE_ENV, 'development');
 
-const env = process.env.NODE_ENV ?? 'local'
+const isProd: boolean = NODE_ENV === 'production';
+const isTest: boolean = NODE_ENV === 'test';
+const isDev: boolean = NODE_ENV === 'development';
 
-export interface Config {
-  appName: string
-  env: string
-
-  auth: {
-    pepper: string
-    saltRounds: number
-    accessTokenExpiration: number
-    commonTokenLength: number
-    refreshTokenExpiration: number
-  }
-
-  logging: {
-    stdout: {
-      enabled: boolean
-      level: string
-      pretty: boolean
-    }
-    sensitiveParameters: string[]
-  }
-
+export const config: any = {
   server: {
-    concurrency: string | number
-    port: number
-  }
+    port: normalizePort(_.defaultTo(process.env.PORT, "3000")),
+    host: _.defaultTo(process.env.HOST, 'localhost'),
+    root: ROOT
+  },
 
-  database: {
-    url: string
+  env: {
+    isDev,
+    isProd,
+    isTest
+  },
+
+  cors: {
+    origin: '*',
+    exposeHeaders: ['Authorization'],
+    credentials: true,
+    allowMethods: ['GET', 'PUT', 'POST', 'DELETE'],
+    allowHeaders: ['Authorization', 'Content-Type'],
+    keepHeadersOnError: true
+  },
+
+  bodyParser: {
+    enableTypes: ['json']
+  },
+
+  db: knexfile[NODE_ENV],
+
+  secret: _.defaultTo(process.env.SECRET, 'secret'),
+
+  jwtSecret: _.defaultTo(process.env.JWT_SECRET, 'secret'),
+
+  jwtOptions: {
+    expiresIn: '7d'
   }
 }
 
-export const getEnvironmentValue = (key: string, defaultValue?: string): string => {
-  const envVal = process.env[key] ?? defaultValue
+function normalizePort (val: string) {
+  const port: number = parseInt(val, 10);
 
-  if (!envVal) {
-    throw new Error(`env variable ${key} has to be defined`)
+  if (isNaN(port)) {
+    return val;
   }
 
-  return envVal
+  if (port >= 0) {
+    return port;
+  }
+
+  return false;
 }
-
-if (env === 'local' || env === 'test') {
-  // eslint-disable-next-line global-require, @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-  require('dotenv').config({ silent: false })
-}
-
-/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
-const envConfig = require(`./environments/${env}`)
-const defaultConfig = require('./default')
-
-/* eslint-enable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
-export const config = (R.mergeDeepRight(defaultConfig, envConfig) as object) as Config

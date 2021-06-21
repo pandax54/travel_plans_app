@@ -28,7 +28,7 @@
     "typeRoots": ["node_modules/@types", "@types"],
     "forceConsistentCasingInFileNames": true,
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "knexfile.ts"],
   "exclude": ["node_modules", "__tests__"]
 }
 

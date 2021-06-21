@@ -1,17 +1,13 @@
 ## Variables ##
 
-KNEXFILE :=  dist/src/config/knexfile.js
+# KNEXFILE :=  dist/src/config/knexfile.js
+KNEXFILE :=  src/config/knexfile.ts
 
-BOOTSTRAP := dist/src/bootstrap.js
+# BOOTSTRAP := dist/src/bootstrap.js
+BOOTSTRAP := src/bootstrap.ts
 BIN := node_modules/.bin
 
 ## Rules ##
-
-compile:
-	npx tsc -p ./tsconfig.build.json
-
-watch:
-	npx tsc -w -p ./tsconfig.build.json
 
 node_modules: package.json
 	npm install
@@ -27,16 +23,3 @@ migrate:
 
 rollback:
 	node -r tsconfig-paths/register -r $(BOOTSTRAP) $(BIN)/knex migrate:rollback --knexfile=$(KNEXFILE)
-
-reset-test-db: compile
-	NODE_ENV=test node -r tsconfig-paths/register -r $(BOOTSTRAP) $(BIN)/knex migrate:rollback --knexfile=$(KNEXFILE)
-	NODE_ENV=test node -r tsconfig-paths/register -r $(BOOTSTRAP) $(BIN)/knex migrate:latest --knexfile=$(KNEXFILE)
-
-reset-dev-db: compile
-	node -r tsconfig-paths/register -r $(BOOTSTRAP) $(BIN)/knex migrate:rollback --knexfile=$(KNEXFILE)
-	node -r tsconfig-paths/register $(BIN)/knex migrate:latest --knexfile=$(KNEXFILE)
-
-reset-dev-db-seed: compile
-	node -r tsconfig-paths/register -r $(BOOTSTRAP) $(BIN)/knex migrate:rollback --knexfile=$(KNEXFILE)
-	node -r tsconfig-paths/register -r $(BOOTSTRAP) $(BIN)/knex migrate:latest --knexfile=$(KNEXFILE)
-	node -r tsconfig-paths/register -r $(BOOTSTRAP) $(BIN)/knex seed:run --knexfile=$(KNEXFILE)

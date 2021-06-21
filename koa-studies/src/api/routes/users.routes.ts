@@ -2,11 +2,11 @@ import { Context } from 'koa';
 import Router from 'koa-router';
 import { create } from '../controllers/users.controller'
 
-const userRouter = new Router({
+const usersRouter = new Router({
   prefix: "/v1/api"
 })
 
-userRouter.get('/success', async (ctx: Context) => {
+usersRouter.get('/success', async (ctx: Context) => {
   ctx.body = {
     status: 'success',
     message: 'hello, world!'
@@ -35,7 +35,7 @@ userRouter.get('/success', async (ctx: Context) => {
 //   }
 // })
 
-userRouter.post("/user", create )
+usersRouter.post("/user", create )
 
 
-export default userRouter
+export const usersRoutes: Router.IMiddleware = usersRouter.routes();
